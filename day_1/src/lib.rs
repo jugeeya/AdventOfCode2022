@@ -1,4 +1,4 @@
-use advent_utils::file_to_lines;
+use utils::file_to_lines;
 
 pub fn part_1(filepath: &str) -> Result<(), std::io::Error> {
     let mut max_calories : u64 = 0;

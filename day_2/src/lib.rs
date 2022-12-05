@@ -1,4 +1,4 @@
-use advent_utils::file_to_lines;
+use utils::file_to_lines;
 
 enum Choice {
     Rock,
