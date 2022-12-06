@@ -1,10 +1,10 @@
+use std::collections::HashMap;
 use utils::file_to_lines;
-use std::{collections::HashMap};
 
 pub fn general_parser(filepath: &str, part_1: bool) -> Result<(), std::io::Error> {
     let mut stack_desc = true;
-    let mut stacks : HashMap<usize, Vec<char>> = HashMap::new();
-    let mut instructions : Vec<(usize, usize, usize)> = vec![];
+    let mut stacks: HashMap<usize, Vec<char>> = HashMap::new();
+    let mut instructions: Vec<(usize, usize, usize)> = vec![];
 
     for line in file_to_lines(filepath)? {
         let txt = line.unwrap();
@@ -13,10 +13,12 @@ pub fn general_parser(filepath: &str, part_1: bool) -> Result<(), std::io::Error
             continue;
         }
         if stack_desc {
-            for item_idx in txt.chars()
+            for item_idx in txt
+                .chars()
                 .enumerate()
                 .filter(|(_idx, c)| *c == '[')
-                .map(|(idx, _c)| idx) {
+                .map(|(idx, _c)| idx)
+            {
                 let item_idx = item_idx + 1;
                 // Number of characters between stacks = 4
                 let stack_num = ((item_idx - 1) / 4) + 1;
@@ -30,8 +32,14 @@ pub fn general_parser(filepath: &str, part_1: bool) -> Result<(), std::io::Error
             }
         } else {
             let mut space_split = txt.split(' ');
-            let (_, num_to_move, _, stack_from, _, stack_to) = 
-                (space_split.next(), space_split.next(), space_split.next(), space_split.next(), space_split.next(), space_split.next());
+            let (_, num_to_move, _, stack_from, _, stack_to) = (
+                space_split.next(),
+                space_split.next(),
+                space_split.next(),
+                space_split.next(),
+                space_split.next(),
+                space_split.next(),
+            );
             let num_to_move = num_to_move.unwrap().parse::<usize>().unwrap();
             let stack_from = stack_from.unwrap().parse::<usize>().unwrap();
             let stack_to = stack_to.unwrap().parse::<usize>().unwrap();

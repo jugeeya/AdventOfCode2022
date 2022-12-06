@@ -3,7 +3,7 @@ use utils::file_to_lines;
 enum Choice {
     Rock,
     Paper,
-    Scissors
+    Scissors,
 }
 
 impl Choice {
@@ -20,7 +20,7 @@ impl Choice {
 enum Outcome {
     Win,
     Draw,
-    Loss
+    Loss,
 }
 
 impl Outcome {
@@ -41,7 +41,7 @@ fn choice_score(key: &Choice) -> u64 {
     match key {
         Rock => 1,
         Paper => 2,
-        Scissors => 3
+        Scissors => 3,
     }
 }
 
@@ -49,19 +49,18 @@ fn outcome_score(opponent: &Choice, player: &Choice) -> u64 {
     match (opponent, player) {
         // Tie
         (Rock, Rock) | (Paper, Paper) | (Scissors, Scissors) => 3,
-        // Win 
+        // Win
         (Rock, Paper) | (Paper, Scissors) | (Scissors, Rock) => 6,
-        // Loss 
+        // Loss
         (Rock, Scissors) | (Paper, Rock) | (Scissors, Paper) => 0,
     }
 }
 
 pub fn part_1(filepath: &str) -> Result<(), std::io::Error> {
-    let mut total_score : u64 = 0;
+    let mut total_score: u64 = 0;
     for line in file_to_lines(filepath)? {
         let txt = line.unwrap();
-        let mut chars = txt.chars()
-            .filter(|c| *c != ' ');
+        let mut chars = txt.chars().filter(|c| *c != ' ');
         let opponent = &Choice::from_char(chars.next().unwrap());
         let player = &Choice::from_char(chars.next().unwrap());
         total_score += choice_score(player) + outcome_score(opponent, player);
@@ -93,11 +92,10 @@ fn player_choice_from_opponent_and_outcome(opponent: &Choice, outcome: &Outcome)
 }
 
 pub fn part_2(filepath: &str) -> Result<(), std::io::Error> {
-    let mut total_score : u64 = 0;
+    let mut total_score: u64 = 0;
     for line in file_to_lines(filepath)? {
         let txt = line.unwrap();
-        let mut chars = txt.chars()
-            .filter(|c| *c != ' ');
+        let mut chars = txt.chars().filter(|c| *c != ' ');
         let opponent = &Choice::from_char(chars.next().unwrap());
         let outcome = &Outcome::from_char(chars.next().unwrap());
         let player = &player_choice_from_opponent_and_outcome(opponent, outcome);

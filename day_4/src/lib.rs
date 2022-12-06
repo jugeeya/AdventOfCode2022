@@ -16,20 +16,18 @@ fn line_contains_included_range(line: &str) -> bool {
     let ((first_min, first_max), (second_min, second_max)) = line_to_ranges(line);
 
     (first_min >= second_min && first_max <= second_max)
-    ||
-    (second_min >= first_min && second_max <= first_max)
+        || (second_min >= first_min && second_max <= first_max)
 }
 
 fn line_contains_any_included_range(line: &str) -> bool {
     let ((first_min, first_max), (second_min, second_max)) = line_to_ranges(line);
 
     (first_min >= second_min && first_min <= second_max)
-    ||
-    (second_min >= first_min && second_min <= first_max)
+        || (second_min >= first_min && second_min <= first_max)
 }
 
 pub fn part_1(filepath: &str) -> Result<(), std::io::Error> {
-    let mut fully_included_ranges : u64 = 0;
+    let mut fully_included_ranges: u64 = 0;
     for line in file_to_lines(filepath)? {
         let txt = line.unwrap();
         if line_contains_included_range(&txt) {
@@ -43,7 +41,7 @@ pub fn part_1(filepath: &str) -> Result<(), std::io::Error> {
 }
 
 pub fn part_2(filepath: &str) -> Result<(), std::io::Error> {
-    let mut fully_included_ranges : u64 = 0;
+    let mut fully_included_ranges: u64 = 0;
     for line in file_to_lines(filepath)? {
         let txt = line.unwrap();
         if line_contains_any_included_range(&txt) {
