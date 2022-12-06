@@ -9,4 +9,5 @@ edition = "2021"
 day_1 = { path = "day_1" }
 day_2 = { path = "day_2" }
 day_3 = { path = "day_3" }
+day_4 = { path = "day_4" }
 clap = { version = "4.0.29", features = ["derive"] }
