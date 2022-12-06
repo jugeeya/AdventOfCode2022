@@ -41,6 +41,11 @@ fn main() -> Result<(), std::io::Error> {
             2 => day_4::part_2(&args.filepath)?,
             p => panic!("Unknown part {p}")
         },
+        5 => match args.part {
+            1 => day_5::part_1(&args.filepath)?,
+            2 => day_5::part_2(&args.filepath)?,
+            p => panic!("Unknown part {p}")
+        },
         d => panic!("Unknown part {d}")
     }
 
