@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use utils::file_to_lines;
+use crate::utils::file_to_lines;
 
 pub fn general_parser(filepath: &str, part_1: bool) -> Result<(), std::io::Error> {
     let mut stack_desc = true;

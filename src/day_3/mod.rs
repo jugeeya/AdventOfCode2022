@@ -1,4 +1,4 @@
-use utils::file_to_lines;
+use crate::utils::file_to_lines;
 
 fn get_repeating_char(s: &str) -> char {
     let middle_idx = s.len() / 2;

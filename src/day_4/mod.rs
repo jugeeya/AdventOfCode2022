@@ -1,4 +1,4 @@
-use utils::file_to_lines;
+use crate::utils::file_to_lines;
 
 fn line_to_ranges(line: &str) -> ((u64, u64), (u64, u64)) {
     let mut comma_split = line.split(',');

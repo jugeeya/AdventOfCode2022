@@ -1,5 +1,12 @@
 use clap::Parser;
 
+mod day_1;
+mod day_2;
+mod day_3;
+mod day_4;
+mod day_5;
+mod utils;
+
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]

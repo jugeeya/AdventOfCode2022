@@ -1,4 +1,4 @@
-use utils::file_to_lines;
+use crate::utils::file_to_lines;
 
 enum Choice {
     Rock,
