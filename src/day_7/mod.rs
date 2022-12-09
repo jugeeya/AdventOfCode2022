@@ -31,10 +31,6 @@ impl FileOrDirValue {
             size: Some(size),
         }
     }
-
-    pub fn to_string(&self) -> String {
-        format!("{self:#?}").to_string()
-    }
 }
 
 pub fn get_directory_size(
@@ -121,7 +117,7 @@ pub fn general_parser(filepath: &str, part: usize) -> Result<(), std::io::Error>
 
         println!("Total: {directory_size}");
     } else if part == 2 {
-        let NEEDED_SPACE: u64 = 70000000 - 30000000;
+        let needed_space: u64 = 70000000 - 30000000;
 
         let directory_sizes = directory_keys
             .iter()
@@ -129,14 +125,14 @@ pub fn general_parser(filepath: &str, part: usize) -> Result<(), std::io::Error>
             .collect::<Vec<(&String, u64)>>();
         let total_used_space = directory_sizes
             .iter()
-            .filter(|(name, size)| *name == "/")
-            .map(|(name, size)| *size)
+            .filter(|(name, _)| *name == "/")
+            .map(|(_, size)| *size)
             .next()
             .unwrap();
         let directory_size = directory_sizes
             .iter()
-            .filter(|(name, size)| *size >= (total_used_space - NEEDED_SPACE))
-            .map(|(name, size)| *size)
+            .filter(|(_, size)| *size >= (total_used_space - needed_space))
+            .map(|(_, size)| *size)
             .min()
             .unwrap();
 
